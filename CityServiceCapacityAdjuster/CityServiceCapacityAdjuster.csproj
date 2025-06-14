@@ -8,11 +8,16 @@
         <!--The file where mod information which is required for publishing mod on PDX mods are stored-->
         <PublishConfigurationPath>Properties\PublishConfiguration.xml</PublishConfigurationPath>
         <PDXAccountDataPath>C:\Users\Patryk\Desktop\ParadoxAccount.txt</PDXAccountDataPath>
+
+		<AssemblyVersion>1.5.1</AssemblyVersion>
+		<FileVersion>1.5.1</FileVersion>
+		<Version>1.5.1</Version>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
     <!--Imports must be after PropertyGroup block-->
-    <Import Project="$([System.Environment]::GetEnvironmentVariable('CSII_TOOLPATH', 'EnvironmentVariableTarget.User'))\Mod.props"/>
-    <Import Project="$([System.Environment]::GetEnvironmentVariable('CSII_TOOLPATH', 'EnvironmentVariableTarget.User'))\Mod.targets"/>
+    <Import Project="$([System.Environment]::GetEnvironmentVariable('CSII_TOOLPATH', 'EnvironmentVariableTarget.User'))\Mod.props" />
+    <Import Project="$([System.Environment]::GetEnvironmentVariable('CSII_TOOLPATH', 'EnvironmentVariableTarget.User'))\Mod.targets" />
 
     <ItemGroup>
         <Reference Include="Game">
@@ -69,8 +74,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="$(ModPropsFile)" Link="Properties\Mod.props"/>
-        <None Include="$(ModTargetsFile)" Link="Properties\Mod.targets"/>
+        <None Include="$(ModPropsFile)" Link="Properties\Mod.props" />
+        <None Include="$(ModTargetsFile)" Link="Properties\Mod.targets" />
     </ItemGroup>
 
 </Project>

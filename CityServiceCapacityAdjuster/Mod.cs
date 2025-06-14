@@ -1,8 +1,11 @@
 ﻿using Colossal.IO.AssetDatabase;
 using Colossal.Logging;
 using Game;
+using Game.City;
 using Game.Modding;
+using Game.Prefabs;
 using Game.SceneFlow;
+using Game.Simulation;
 
 namespace CityServiceCapacityAdjuster
 {
@@ -24,11 +27,15 @@ namespace CityServiceCapacityAdjuster
             m_Setting.RegisterInOptionsUI();
             GameManager.instance.localizationManager.AddSource("en-US", new LocaleEN(m_Setting));
 
-
             AssetDatabase.global.LoadSettings(nameof(CityServiceCapacityAdjuster), m_Setting, new Setting(this));
 
             updateSystem.UpdateAfter<CityServiceCapacityAdjusterSystem>(SystemUpdatePhase.PrefabUpdate);
             updateSystem.UpdateBefore<CityServiceCapacityAdjusterSystem>(SystemUpdatePhase.PrefabReferences);
+
+            updateSystem.UpdateAfter<PathfindingCostAdjusterSystem>(SystemUpdatePhase.PrefabUpdate);
+            updateSystem.UpdateBefore<PathfindingCostAdjusterSystem>(SystemUpdatePhase.PrefabReferences);
+
+            updateSystem.UpdateBefore<PostalOfficeFixSystem>(SystemUpdatePhase.GameSimulation);
         }
 
         public void OnDispose()
